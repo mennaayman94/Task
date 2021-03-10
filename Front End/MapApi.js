@@ -44,8 +44,8 @@ require([
   //get data and populate it in the grid
   function getData() {
     var userInput = document.getElementById("code").value;
-    if (!(userInput >= 187530 && userInput <= 187536)) {
-      alert("You must enter a number between 187530 and 187536");
+    if (!(userInput >= 187537 && userInput <= 187543)) {
+      alert("You must enter a number between 187537 and 187543");
     } else {
       var queryTask = new QueryTask({
         url: layerUrl
@@ -97,11 +97,7 @@ require([
                   title: "Date",
                   //template: '#= kendo.toString(1339113600000,"dd MMMM yyyy") #'
                 },
-                {
-                  command: { text: "View Details" },
-                  title: "",
-                  width: "180px",
-                },
+                { command: { text: "View Details", click: zoom }, title: " ", width: "180px" },
               ],
             });
 
@@ -115,7 +111,19 @@ require([
       );
     }
   }
-
+function zoom(){
+  var query =  DamageLayer.createQuery();
+  DamageLayer.queryFeatures(query).then(function(results){
+    const features= results.features;
+    console.log(features)
+    var geometries= features.map(g=>g.geometry)
+    console.log(geometries)
+    view.goTo({
+      target: geometries[0],
+             zoom: 20
+    })
+  })
+}
   const map = new Map({
     basemap: "arcgis-topographic",
     layers: [DamageLayer],
