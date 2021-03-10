@@ -23,6 +23,10 @@ require([
   SimpleFillSymbol,
   GraphicsLayer
 ) {
+  var mappedFeature;
+  var res;
+  var ConvertedDatetime;
+  var c;
   const apiKey =
     "AAPK066b3f8062df426d83e1b437a5fae43e1cyvJ98T5uJmwwZsob78QgJjJ30GwvaeNC3WVigI11TnTIhGWGTDEnii8nycsbBk";
   esriConfig.apiKey = apiKey;
@@ -32,30 +36,28 @@ require([
   const DamageLayer = new FeatureLayer({
     url: layerUrl,
   });
-  var mappedFeature;
-  var res;
-  var ConvertedDatetime;
-  var c;
+  
 
-  var queryTask = new QueryTask({
-    url: layerUrl,
-  });
+  
   var btn = document.getElementById("querybtn");
   btn.addEventListener("click", getData);
   //get data and populate it in the grid
-  async function getData() {
+  function getData() {
     var userInput = document.getElementById("code").value;
     if (!(userInput >= 187530 && userInput <= 187536)) {
       alert("You must enter a number between 187530 and 187536");
     } else {
+      var queryTask = new QueryTask({
+        url: layerUrl
+      });
       //query to extract data
-      var query = await new Query();
+      var query =  new Query();
       query.returnGeometry = true;
       query.outFields = ["incidentnm", "firstname", "inspdate"];
       query.where = `objectid<${userInput}`;
-
-      await queryTask.execute(query).then(
-        await function (results) {
+      
+      queryTask.execute(query).then(
+       function (results) {
           console.log(results);
           res = results.features;
           mappedFeature = res.map((f) => f.attributes);
@@ -167,5 +169,6 @@ require([
       });
   }
 //add text boc div to the view
-  view.ui.add("infoDiv", "top-right");
+view.ui.add("infoDiv", "top-right");
+
 });
