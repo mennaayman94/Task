@@ -1,0 +1,13 @@
+#viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+  #infoDiv {
+    color:black;
+    background-color:gainsboro;
+    padding: 6px;
+    width: 400px;
+    margin-top: 20%;
+  }
