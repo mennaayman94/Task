@@ -1,0 +1,13 @@
+Back End Task (Web Api)Multi Tier
+- Assume we Have Classes Each class have student 
+each group of students have One supervisor Teaher
+- Each Teacher has many students (one to many relation)
+Crud operation on both students and teachers (GetAll, Get By id , Post, Edit , Delete)
+Note: There is a script file generated from sql of schema and data is attached with this file (Script.Sql) 
+- Used Technologies:
+1-WEb api (mvc) Ado.Net (Database first)
+2-AutoMapper to map data into DTO (Data Transfer Object--Data Access layer)
+3-Generic Repository Pattern
+4-Linq
+5-Business Layer
+6-Post man for testing Api 
