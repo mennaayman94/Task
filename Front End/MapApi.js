@@ -62,7 +62,7 @@ require([
           res = results.features;
           mappedFeature = res.map((f) => f.attributes);
           ConvertedDatetime = mappedFeature.map((t) => t.inspdate);
-//modify the object of data and replace esri date ime with humn data time 
+//modify the object of data and replace esri date time with humn data time 
           for (var i = 0; i < ConvertedDatetime.length; i++) {
             c = new Date(ConvertedDatetime[i]).toUTCString();
             console.log(c);
@@ -97,7 +97,7 @@ require([
                   title: "Date",
                   //template: '#= kendo.toString(1339113600000,"dd MMMM yyyy") #'
                 },
-                { command: { text: "View Details", click: zoom }, title: " ", width: "180px" },
+                { command: { text: "Zoom", click: zoom }, title: " ", width: "180px" },
               ],
             });
 
@@ -111,6 +111,7 @@ require([
       );
     }
   }
+  //zoom to the first feature in the map
 function zoom(){
   var query =  DamageLayer.createQuery();
   DamageLayer.queryFeatures(query).then(function(results){
